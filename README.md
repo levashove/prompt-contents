@@ -1,5 +1,7 @@
 # promt-contents
 
+# **[Канал в ТГ!](https://t.me/proitru)** - промты, новости ИИ, техноконтентское 
+
 ## Для создания SEO-статей
 
 **[ПРОМТ 1 — Аналитик → Архитектор параметров → выдаёт FINAL_GENERATION_PARAMS](https://github.com/levashove/promt-contents/blob/main/prompt_seo_1_analyze_and_build_params.yaml)**
