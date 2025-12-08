@@ -1,6 +1,6 @@
 ---
 name: create-event
-description: Создание страницы мероприятия (вебинар, конференция, митап, хакатон)
+description: Interactive wizard for creating event pages (webinar, conference, meetup, hackathon)
 ---
 
 # Event Page Wizard
