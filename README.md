@@ -332,12 +332,19 @@ Standalone промты для использования в любых LLM бе
 prompt-contents/
 ├── .claude/
 │   └── commands/                        # Глобальные slash-команды
+│       ├── article-workflow.md
+│       ├── create-event.md
+│       ├── draft-article.md
+│       ├── seo-create-article.md
+│       ├── trend-research.md
+│       └── write-press-release.md
 │
 ├── trend-researcher/                    # Исследование трендов
 │   ├── .claude/
 │   │   ├── agents/tech-content-strategist.md
 │   │   ├── commands/trend-research.md
-│   │   └── skills/tech-trends-research/
+│   │   └── skills/
+│   │       └── tech-trends-research/SKILL.md
 │   └── README.md
 │
 ├── tech-writer/                         # Написание статей
@@ -345,8 +352,8 @@ prompt-contents/
 │   │   ├── agents/tech-content-writer.md
 │   │   ├── commands/draft-article.md
 │   │   └── skills/
-│   │       ├── enterprise-storytelling/
-│   │       └── technical-writing-standards/
+│   │       ├── enterprise-storytelling/SKILL.md
+│   │       └── technical-writing-standards/SKILL.md
 │   └── README.md
 │
 ├── content-editor/                      # Фактчек и редактура
@@ -355,15 +362,16 @@ prompt-contents/
 │   │   │   ├── tech-fact-checker.md
 │   │   │   └── content-editor.md
 │   │   └── skills/
-│   │       ├── fact-checking-methodology/
-│   │       └── editorial-excellence/
+│   │       ├── fact-checking-methodology/SKILL.md
+│   │       └── editorial-excellence/SKILL.md
 │   └── README.md
 │
 ├── seo-publisher/                       # SEO и публикация
 │   ├── .claude/
 │   │   ├── agents/seo-content-optimizer.md
 │   │   ├── commands/article-workflow.md
-│   │   └── skills/media-publishing-guidelines/
+│   │   └── skills/
+│   │       └── media-publishing-guidelines/SKILL.md
 │   └── README.md
 │
 ├── landing-updater/                     # Landing Page Updater
@@ -386,6 +394,8 @@ prompt-contents/
 │   │   ├── commands/create-event.md
 │   │   └── skills/event-templates.md
 │   ├── examples/
+│   │   ├── webinar-simple.md
+│   │   └── conference-full.md
 │   └── README.md
 │
 ├── press-release-wizard/                # Press Release wizard
@@ -394,10 +404,21 @@ prompt-contents/
 │   │   ├── commands/write-press-release.md
 │   │   └── skills/press-release-knowledge.md
 │   ├── examples/
+│   │   ├── product-launch.md
+│   │   ├── partnership.md
+│   │   ├── product-line.md
+│   │   └── product-update.md
+│   ├── prompts/
+│   │   └── press-release-universal-prompt.md
 │   └── README.md
 │
 ├── prompts/                             # YAML-промты
-├── articles/                            # Сгенерированные статьи
+│   ├── prompt_seo_1_analyze_and_build_params.yaml
+│   ├── prompt_seo_2_generate_article.yaml
+│   └── prompt_seo_3_infostyle_transformer_2_0.yaml
+│
+├── articles/                            # Сгенерированные статьи (примеры)
+│
 ├── README.md
 └── CLAUDE.md
 ```
