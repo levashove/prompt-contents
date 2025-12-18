@@ -32,6 +32,7 @@ This will guide you through the complete process:
 - Target audience
 - Target publications
 - Business goals
+- **Geographic focus** (Global / Russia / Mixed)
 
 **Outputs / Результаты**:
 - Trend research report
@@ -45,6 +46,32 @@ This will guide you through the complete process:
 2. Who is the target audience? (C-level, engineering leaders, developers, etc.)
 3. Which publications are you targeting? (Forbes, TechCrunch, Habr, etc.)
 4. What business goals drive this content? (thought leadership, lead gen, awareness)
+5. **Geographic focus?** (Глобальный / Российский / Смешанный)
+
+#### Исследование для российского рынка
+
+При выборе российского рынка применяется расширенная методология:
+
+**Источники исследования / Russian Research Sources**:
+- **Отраслевые**: TAdviser, CNews Analytics, РУССОФТ, РАЭК
+- **СМИ**: Habr, VC.ru, CNews, РБК, Коммерсантъ, Ведомости
+- **Регуляторные**: Минцифры, ФСТЭК, ЦБ РФ, реестр ПО
+- **Сообщества**: Highload++, DevOpsConf, TeamLead Conf
+
+**Специфика российского исследования**:
+- Yandex Wordstat вместо/вместе с Google Trends
+- Анализ импортозамещения и реестра отечественного ПО
+- Регуляторный контекст (152-ФЗ, 187-ФЗ, ГОСТ Р 57580)
+- Сезонность: Q4 — бюджетирование, Q1 — освоение бюджетов
+
+**Целевые публикации по аудиториям**:
+| Аудитория | Издания |
+|-----------|---------|
+| CIO/ИТ-директора | CNews, TAdviser, Коммерсантъ |
+| Разработчики | Habr, InfoQ Russia |
+| Стартапы/продакты | VC.ru |
+| Бизнес-лидеры | РБК, Ведомости, Forbes Russia |
+| Финсектор | RBC Pro, Банковское обозрение |
 
 ### Phase 2: Content Ideation (Генерация идеи)
 
@@ -93,6 +120,39 @@ Select which content concept to develop into full article.
 2. Company messaging requirements or constraints?
 3. Target word count and publication?
 4. Deadline for draft?
+5. **Language and publication style?** (EN / RU / publication-specific)
+
+#### Drafting for Russian Publications / Написание для российских СМИ
+
+При создании контента для российских изданий применяются специфические гайдлайны:
+
+**Habr** (`columnist-wizard/skills/media/tech/habr.md`):
+- Объём: 1,500-3,000 слов
+- Технический уровень: 60-80%
+- Обязательно: код, примеры, метрики
+- Запрещено: маркетинг, пресс-релизный стиль
+- Формат: `<cut/>` для превью
+
+**VC.ru** (`columnist-wizard/skills/media/tech/vc-ru.md`):
+- Объём: 800-2,000 слов
+- Тон: разговорный, личный опыт
+- Приветствуется: истории неудач, цифры, дискуссии
+- Время публикации: Пн 16-18
+
+**CNews** (`columnist-wizard/skills/media/tech/cnews.md`):
+- Аудитория: CIO, ИТ-директора
+- Форматы: экспертные цитаты (400-800 слов), колонки (1,500-2,500)
+- Фокус: enterprise IT, госсектор
+
+**РБК** (`columnist-wizard/skills/media/business/rbc.md`):
+- Объём: 1,000-1,500 слов
+- Требуется: данные в первых абзацах, 3+ источника
+- Контринтуитивные углы приветствуются
+
+**Ведомости** (`columnist-wizard/skills/media/business/vedomosti.md`):
+- Аудитория: топ-менеджмент
+- Стиль: аналитический, взвешенный
+- Требуется: экспертный статус автора
 
 ### Phase 4: Fact-Checking (Проверка фактов)
 
@@ -166,6 +226,37 @@ Select which content concept to develop into full article.
 - Distribution recommendations
 - Final optimized article
 - Saved to: `output/final/[date]-[title-slug]-final.md`
+
+#### SEO для российского рынка / Russian Market SEO
+
+**Поисковые системы**:
+- Yandex: ~50% поиска в России
+- Google: ~45% поиска в России
+- Оптимизация под оба поисковика
+
+**Yandex-специфика**:
+- ИКС (Индекс качества сайта) важнее PageRank
+- Региональность: учитывать геопривязку контента
+- Яндекс.Вебмастер для мониторинга
+- Турбо-страницы для ускорения
+
+**Инструменты исследования ключевых слов**:
+- Yandex Wordstat (wordstat.yandex.ru) — основной инструмент
+- Яндекс.Вебмастер — запросы, по которым показывается сайт
+- Serpstat — конкурентный анализ RU-сегмента
+- Keys.so — кластеризация запросов
+
+**Особенности русскоязычного SEO**:
+- Морфология: учитывать склонения и падежи
+- Транслитерация: английские термины на кириллице
+- Локальные синонимы: «облако» vs «cloud», «кубернетес» vs «kubernetes»
+
+**Социальные сети для дистрибуции**:
+- Telegram-каналы — основной канал IT-аудитории
+- Habr — кросс-постинг и обсуждения
+- VC.ru — бизнес и продуктовая аудитория
+- VK — охват широкой аудитории
+- LinkedIn — международная экспертиза
 
 ### Phase 7: Publication Preparation (Подготовка к публикации)
 
@@ -291,6 +382,52 @@ Specify output format preferences:
 /article-workflow --format=medium
 ```
 
+### Geographic Focus / География
+
+Specify market focus for research and optimization:
+
+```bash
+/article-workflow --geography=global   # International sources, English SEO
+/article-workflow --geography=russia   # Russian sources, Yandex SEO, RU publications
+/article-workflow --geography=mixed    # Both markets, bilingual approach
+```
+
+### Russian Publication Presets / Пресеты для российских СМИ
+
+Quick start with publication-specific settings:
+
+```bash
+# Technical audience (developers, architects)
+/article-workflow --publication=habr
+# → Язык: RU, 1500-3000 слов, технический стиль, код обязателен
+
+# Business/startup audience
+/article-workflow --publication=vc-ru
+# → Язык: RU, 800-2000 слов, личный опыт, разговорный стиль
+
+# Enterprise IT (CIO, IT directors)
+/article-workflow --publication=cnews
+# → Язык: RU, 400-2500 слов, экспертный тон, enterprise фокус
+
+# Business leaders
+/article-workflow --publication=rbc
+# → Язык: RU, 1000-1500 слов, данные обязательны, аналитический стиль
+
+# Executive audience
+/article-workflow --publication=vedomosti
+# → Язык: RU, 1000-1500 слов, взвешенный тон, статусный автор
+```
+
+### Language / Язык
+
+Specify content language:
+
+```bash
+/article-workflow --language=en-US     # American English
+/article-workflow --language=en-UK     # British English
+/article-workflow --language=ru        # Russian
+```
+
 ## Success Metrics / Метрики успеха
 
 Track these metrics for continuous improvement:
@@ -344,6 +481,8 @@ Track these metrics for continuous improvement:
 - `/draft-article` - Start from drafting with existing brief
 - `/fact-check` - Verify facts in existing content
 - `/seo-optimize` - Optimize existing article for SEO
+- `/write-column` - **[NEW]** Wizard for Russian business media (Forbes, RBC, Vedomosti, Habr, VC.ru)
+- `/seo-create-article` - SEO-first article creation with keyword research
 
 ---
 
