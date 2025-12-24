@@ -53,6 +53,7 @@
 | Эксперт | Описание |
 |---------|----------|
 | `vk-cloud-security` | Эксперт по ИБ VK Cloud (сертификации, compliance, защита инфраструктуры) |
+| `virtualization-vmware` | Эксперт по виртуализации и VMware (vSphere/vSAN/NSX, миграция, российские платформы, VK Cloud) |
 | `general` | Универсальный автор (по умолчанию) |
 
 Эксперты определяют терминологию, глубину и стиль статьи.
@@ -96,7 +97,8 @@
 Агент: Тема сохранена.
        Шаг 2/11: Выберите эксперта:
        1. vk-cloud-security — Эксперт по ИБ VK Cloud
-       2. general — Универсальный автор
+       2. virtualization-vmware — Эксперт по виртуализации и VMware
+       3. general — Универсальный автор
 
 Вы:    1
 
@@ -249,7 +251,8 @@ seo-content-creator/
 │   │   └── create-article.md              # Команда запуска
 │   └── skills/
 │       ├── seo-knowledge.md               # База знаний SEO
-│       └── vk-cloud-security-expert.md    # Эксперт по ИБ VK Cloud
+│       ├── vk-cloud-security-expert.md    # Эксперт по ИБ VK Cloud
+│       └── virtualization-vmware-expert.md # Эксперт по виртуализации и VMware
 └── README.md
 ```
 
