@@ -11,6 +11,63 @@ activation:
 
 ---
 
+## БИЗНЕС-ПРОБЛЕМЫ И VALUE PROPOSITION
+
+### Какие проблемы решает Managed Kubernetes
+
+```yaml
+pain_points:
+  slow_development:
+    problem: "Медленная разработка"
+    description: "Развертывание сред занимает дни или недели"
+    solution: "Запуск кластера за 10 минут, Fully Managed режим"
+
+  peak_loads:
+    problem: "Пиковые нагрузки"
+    description: "Сервисы падают во время рекламных акций или всплеска трафика"
+    solution: "Автомасштабирование до 55 000 подов и 500 нод"
+
+  high_costs:
+    problem: "Высокие затраты"
+    description: "Платите за неиспользуемые мощности и сложное администрирование"
+    solution: "Экономия до 60%, посекундная тарификация, Start/Stop кластеров"
+
+  management_complexity:
+    problem: "Сложность управления"
+    description: "Команда тратит время на поддержку Kubernetes, а не на развитие продукта"
+    solution: "Fully Managed режим — VK Cloud управляет Control Plane"
+```
+
+### Ценность для разных аудиторий
+
+```yaml
+value_proposition:
+  business:
+    audience: "Бизнес-подразделения"
+    benefits:
+      - "Быстрый вывод продуктов и новой функциональности в прод"
+      - "Снижение совокупной стоимости владения (TCO) для ИТ-решений"
+      - "Автомасштабирование под пиковые нагрузки (акции, сезонные пики)"
+      - "Отказоустойчивость сервиса для непрерывной работы систем"
+
+  developers:
+    audience: "Команда разработки"
+    benefits:
+      - "Стандартизация среды разработки, оркестрация сотен и тысяч контейнеров"
+      - "Упрощение CI/CD: автоматизация сборки, тестирования и развертывания"
+      - "Запуск распределённых вычислений с доступом к GPU"
+      - "Маркетплейс аддонов с подключением по кнопке"
+
+  administrators:
+    audience: "Команда администраторов"
+    benefits:
+      - "Избавление от рутины (апдейты, патчи, мониторинг)"
+      - "Готовая, отказоустойчивая инфраструктура"
+      - "Удобное управление через привычные инструменты (Terraform, kubectl)"
+```
+
+---
+
 ## EXPERT PROFILE
 
 ```yaml
@@ -164,6 +221,222 @@ high_availability:
     - self-healing Kubernetes
     - отказоустойчивость
     - zero downtime
+```
+
+---
+
+## УНИКАЛЬНЫЕ ТЕХНОЛОГИИ VK CLOUD
+
+### Kube-in-Kube (вложенный Kubernetes)
+
+```yaml
+kube_in_kube:
+  description: "Технология изоляции Control Plane через вложенные кластеры"
+  concept: "Control Plane клиента работает как workload внутри системного кластера VK Cloud"
+
+  architecture:
+    system_cluster: "Управляемый VK Cloud системный кластер"
+    user_cluster: "Пользовательский кластер внутри системного"
+    worker_nodes: "Рабочие ноды в проекте клиента, подключены через Kubelet"
+
+  benefits:
+    - "Control Plane работает в кластере Kubernetes — используются все преимущества K8s для управления K8s"
+    - "Изоляция системных компонентов кластеров клиентов между собой"
+    - "Стабильность и гибкость Control Plane за счёт использования инструментов Kubernetes"
+    - "Критические компоненты (DNS, Network Plugins) защищены от изменений пользователя"
+    - "Отсутствие влияния рабочей нагрузки на Control Plane"
+
+  comparison_with_vcluster:
+    similarity: "Концепция похожа на open-source vCluster от Loft Labs"
+    vcluster_description: "Virtual cluster — сертифицированный Kubernetes внутри host-кластера"
+    vcluster_benefits:
+      - "Дешевле отдельных кластеров"
+      - "Лучшая изоляция чем namespaces"
+      - "Каждый tenant получает admin-доступ к своему виртуальному кластеру"
+    source: "https://www.vcluster.com/"
+
+  keywords:
+    - Kube-in-Kube
+    - вложенный Kubernetes
+    - nested cluster
+    - мультитенантность
+    - изоляция кластеров
+```
+
+### SDN Sprut
+
+```yaml
+sdn_sprut:
+  description: "Собственная Software-Defined Network VK Cloud"
+  tagline: "Неубиваемая сеть, разработанная в VK Cloud"
+
+  background:
+    previous_solution: "OpenStack Neutron"
+    development_time: "Менее года"
+    current_status: "Production, работает параллельно с Neutron"
+
+  advantages_over_neutron:
+    - "Глобально переработанная архитектура"
+    - "Агенты непрерывно собирают информацию о Data plane"
+    - "Устранена event-driven модель между компонентами"
+    - "Нет характерных для Neutron проблем"
+
+  kubernetes_integration:
+    - "Создание кластеров в изолированных средах"
+    - "Исключение хранения чувствительных данных на ноде"
+    - "Постоянная связанность с API облака для надёжности"
+    - "Интеграция с Calico для Network Policies"
+
+  advanced_features:
+    - "Virtual Router с поддержкой BGP+BFD"
+    - "Подключение внешних VPN к облачным проектам"
+    - "Маршрутизация между SDN Neutron и SDN Sprut"
+
+  source: "https://habr.com/ru/companies/vk/articles/763760/"
+
+  keywords:
+    - SDN Sprut
+    - software-defined network
+    - сетевая виртуализация
+    - VK Cloud сеть
+```
+
+### Shared Responsibility Model (Разделение ответственности)
+
+```yaml
+shared_responsibility:
+  description: "Модель разделения зон ответственности в Fully Managed режиме"
+
+  vk_cloud_responsibility:
+    control_plane:
+      - "API Server"
+      - "Controller Manager"
+      - "Scheduler"
+      - "ETCD"
+      - "CoreDNS"
+      - "Master ноды"
+    worker_nodes: "До уровня операционной системы включительно"
+    infrastructure:
+      - "Конфигурация виртуальной сети"
+      - "Базовая сетевая инфраструктура"
+
+  user_responsibility:
+    workloads:
+      - "Данные и приложения"
+      - "Образы контейнеров"
+      - "Исходный код"
+    configuration:
+      - "IAM и RBAC настройки"
+      - "Сетевые политики"
+      - "Endpoints"
+      - "Лимиты и квоты"
+      - "HPA и VPA"
+    addons:
+      - "Аддоны"
+      - "POD Network"
+      - "Cluster Autoscaler конфигурация"
+
+  key_benefit: "Пользователь получает доступ только к API — Control Plane полностью изолирован"
+```
+
+### Self-Healing для рабочих нод
+
+```yaml
+self_healing_details:
+  description: "Автоматическое восстановление компонентов кластера"
+
+  monitoring:
+    scope: "Компоненты ноды и системных сервисов под контролем сервиса"
+
+  recovery_actions:
+    - action: "Перезапуск системного компонента"
+      trigger: "Компонент не отвечает или работает некорректно"
+    - action: "Пересоздание ноды кластера"
+      trigger: "Нода недоступна или повреждена"
+
+  benefit: "Возврат кластера в рабочее состояние без вмешательства DevOps-инженеров"
+```
+
+---
+
+## ТАРИФИКАЦИЯ И ЭКОНОМИЯ
+
+### Модель ценообразования
+
+```yaml
+pricing_model:
+  billing_type: "Посекундная тарификация"
+  payment: "Оплата только за рабочее время"
+
+  cost_optimization_features:
+    start_stop:
+      description: "Функция Start/Stop кластеров"
+      use_case: "Останавливайте кластеры на ночь или выходные"
+      benefit: "Не платите за вычисления в нерабочее время"
+
+    separate_billing:
+      description: "Раздельная тарификация мастер и рабочих нод"
+      benefit: "Прозрачный контроль затрат, исключение неоправданного использования ресурсов"
+
+    autoscaling_savings:
+      description: "Экономия через автомасштабирование"
+      savings: "До 60% затрат на инфраструктуру"
+      how_it_works: "Автоматическое добавление/удаление нод в зависимости от нагрузки"
+
+  configuration_options:
+    processors:
+      - "Intel Cascade Lake"
+      - "Intel Ice Lake"
+    disk_types:
+      - "HDD"
+      - "SSD"
+      - "High-IOPS SSD"
+    networking:
+      - "Публичный IP (опционально)"
+```
+
+---
+
+## МИГРАЦИЯ С ДРУГИХ ПЛАТФОРМ
+
+### Источники миграции
+
+```yaml
+migration_sources:
+  infrastructure:
+    - "On-Premises инфраструктура"
+    - "Виртуальные машины"
+
+  orchestrators:
+    - "Docker Swarm"
+    - "Nomad"
+    - "Другие Kubernetes-кластеры"
+
+  cloud_providers:
+    - "Другие облачные провайдеры"
+    - "VMware"
+    - "Docker-based инфраструктура"
+
+migration_services:
+  consulting:
+    description: "Консультации по архитектуре"
+    scope: "Построение отказоустойчивой масштабируемой микросервисной архитектуры с использованием Kubernetes"
+
+  managed_services:
+    description: "Сопровождение миграции"
+    features:
+      - "Круглосуточный мониторинг 24/7"
+      - "Решение инцидентов"
+      - "Настройка резервного копирования"
+      - "Обеспечение работоспособности кластеров K8s и облачной инфраструктуры"
+
+migration_tools:
+  velero:
+    description: "Backup и миграция Kubernetes"
+    capabilities:
+      - "Резервное копирование yaml-манифестов"
+      - "Миграция Persistent Volumes"
+      - "Перенос из других Kubernetes в Cloud Containers"
 ```
 
 ---
@@ -789,4 +1062,311 @@ article_structure:
       - "Сценарии использования"
       - "Преимущества VK Cloud"
       - "Как начать"
+```
+
+---
+
+## СЛОВАРЬ ТЕРМИНОВ KUBERNETES
+
+### Основные термины
+
+```yaml
+glossary:
+  # Базовые концепции
+  kubernetes:
+    term: "Kubernetes (K8s)"
+    definition: "Платформа оркестрации контейнеров с открытым исходным кодом для автоматизации развёртывания, масштабирования и управления контейнеризированными приложениями"
+    origin: "Разработан Google, передан в CNCF в 2014 году"
+
+  cluster:
+    term: "Кластер (Cluster)"
+    definition: "Набор машин (нод), на которых выполняются контейнеризированные приложения под управлением Kubernetes"
+
+  node:
+    term: "Нода (Node)"
+    definition: "Рабочая машина в кластере Kubernetes — виртуальная или физическая"
+    types:
+      master: "Управляющая нода с компонентами Control Plane"
+      worker: "Рабочая нода для запуска пользовательских workloads"
+
+  pod:
+    term: "Под (Pod)"
+    definition: "Минимальная развёртываемая единица в Kubernetes — один или несколько контейнеров с общими ресурсами"
+
+  namespace:
+    term: "Namespace"
+    definition: "Логический раздел кластера для изоляции ресурсов разных команд или проектов"
+
+  # Control Plane компоненты
+  control_plane:
+    term: "Control Plane"
+    definition: "Управляющий слой Kubernetes, принимающий решения о кластере"
+    components:
+      - "API Server — центральный компонент для всех операций"
+      - "etcd — распределённое хранилище состояния кластера"
+      - "Scheduler — распределяет поды по нодам"
+      - "Controller Manager — управляет контроллерами"
+
+  api_server:
+    term: "API Server (kube-apiserver)"
+    definition: "Центральный компонент Control Plane, обрабатывающий все REST-запросы к кластеру"
+
+  etcd:
+    term: "etcd"
+    definition: "Распределённое key-value хранилище для всех данных кластера Kubernetes"
+
+  scheduler:
+    term: "Scheduler (kube-scheduler)"
+    definition: "Компонент, назначающий поды на ноды на основе доступных ресурсов и ограничений"
+
+  controller_manager:
+    term: "Controller Manager"
+    definition: "Запускает контроллеры — процессы, следящие за состоянием кластера"
+
+  # Рабочие компоненты
+  kubelet:
+    term: "Kubelet"
+    definition: "Агент на каждой ноде, обеспечивающий запуск контейнеров в соответствии со спецификацией подов"
+
+  kube_proxy:
+    term: "kube-proxy"
+    definition: "Сетевой прокси на каждой ноде, реализующий сетевые правила Kubernetes"
+
+  # Workloads
+  deployment:
+    term: "Deployment"
+    definition: "Декларативное описание желаемого состояния подов и ReplicaSets"
+
+  replicaset:
+    term: "ReplicaSet"
+    definition: "Гарантирует запуск указанного количества реплик пода"
+
+  statefulset:
+    term: "StatefulSet"
+    definition: "Управляет stateful-приложениями с сохранением идентичности подов"
+
+  daemonset:
+    term: "DaemonSet"
+    definition: "Обеспечивает запуск пода на каждой (или выбранных) ноде кластера"
+
+  job:
+    term: "Job"
+    definition: "Создаёт поды для выполнения задачи до успешного завершения"
+
+  cronjob:
+    term: "CronJob"
+    definition: "Запускает Job по расписанию (аналог cron в Linux)"
+
+  # Networking
+  service:
+    term: "Service"
+    definition: "Абстракция для группы подов с единым сетевым endpoint"
+    types:
+      - "ClusterIP — доступ внутри кластера"
+      - "NodePort — доступ через порт на ноде"
+      - "LoadBalancer — внешний балансировщик"
+      - "ExternalName — CNAME-запись"
+
+  ingress:
+    term: "Ingress"
+    definition: "Управляет внешним HTTP/HTTPS доступом к сервисам кластера"
+
+  ingress_controller:
+    term: "Ingress Controller"
+    definition: "Реализация Ingress (например, NGINX, Traefik, HAProxy)"
+
+  network_policy:
+    term: "Network Policy"
+    definition: "Правила сетевого доступа между подами на уровне IP/порта"
+
+  # Storage
+  persistent_volume:
+    term: "Persistent Volume (PV)"
+    definition: "Ресурс хранения в кластере, независимый от жизненного цикла пода"
+
+  persistent_volume_claim:
+    term: "Persistent Volume Claim (PVC)"
+    definition: "Запрос пользователя на выделение Persistent Volume"
+
+  storage_class:
+    term: "StorageClass"
+    definition: "Описание классов хранения для динамического создания PV"
+
+  # Configuration
+  configmap:
+    term: "ConfigMap"
+    definition: "Хранит конфигурационные данные в виде пар ключ-значение"
+
+  secret:
+    term: "Secret"
+    definition: "Хранит конфиденциальные данные (пароли, токены, ключи)"
+
+  # Autoscaling
+  hpa:
+    term: "HPA (Horizontal Pod Autoscaler)"
+    definition: "Автоматически масштабирует количество подов на основе метрик"
+
+  vpa:
+    term: "VPA (Vertical Pod Autoscaler)"
+    definition: "Автоматически настраивает CPU/memory requests и limits подов"
+
+  cluster_autoscaler:
+    term: "Cluster Autoscaler"
+    definition: "Автоматически добавляет/удаляет ноды в кластере"
+
+  # Security
+  rbac:
+    term: "RBAC (Role-Based Access Control)"
+    definition: "Управление доступом на основе ролей"
+
+  service_account:
+    term: "Service Account"
+    definition: "Идентификация процессов в подах для доступа к API"
+
+  pod_security_policy:
+    term: "Pod Security Standards"
+    definition: "Политики безопасности для ограничения возможностей подов"
+
+  # Advanced
+  crd:
+    term: "CRD (Custom Resource Definition)"
+    definition: "Расширение API Kubernetes пользовательскими ресурсами"
+
+  operator:
+    term: "Operator"
+    definition: "Паттерн для автоматизации управления приложениями через CRD"
+
+  helm:
+    term: "Helm"
+    definition: "Пакетный менеджер для Kubernetes — установка приложений через Charts"
+
+  service_mesh:
+    term: "Service Mesh"
+    definition: "Инфраструктурный слой для управления service-to-service коммуникацией (Istio, Linkerd)"
+
+  gitops:
+    term: "GitOps"
+    definition: "Практика использования Git как единого источника истины для инфраструктуры"
+```
+
+---
+
+## ИССЛЕДОВАНИЯ И ИСТОЧНИКИ
+
+### Подтверждённые цифры и факты
+
+```yaml
+verified_metrics:
+  # Лимиты VK Cloud Containers
+  vk_cloud_limits:
+    pods_per_cluster: "До 55 000 подов"
+    nodes_per_cluster: "До 500 нод"
+    objects_per_cluster: "До 500 000 объектов"
+    sla: "99.95%"
+    startup_time: "10 минут"
+    cost_savings: "До 60% с автоскейлингом"
+    source: "Официальная презентация VK Cloud Managed Kubernetes"
+
+  # Сравнение с индустрией
+  industry_comparison:
+    digitalocean_sla: "99.95% SLA для HA Control Plane"
+    azure_aks_sla: "99.95% с Availability Zones, 99.9% без них"
+    gke_node_limit: "Рекомендовано до 200 нод на кластер, тестировано до 500"
+    ovhcloud_pods_per_node: "До 110 подов на ноду"
+    sources:
+      - "https://www.digitalocean.com/blog/digitalocean-kubernetes-high-availability-control-plane-sla"
+      - "https://learn.microsoft.com/en-us/azure/aks/free-standard-pricing-tiers"
+      - "https://docs.cloud.google.com/kubernetes-engine/distributed-cloud/bare-metal/docs/limits"
+
+  # Российский рынок
+  russian_market:
+    market_size_2024_json: "9.7 млрд рублей (J'son & Partners Consulting)"
+    market_size_2024_tadviser: "5.7 млрд рублей (TAdviser, другая методика)"
+    growth_2024: "29%+ год к году"
+    forecast_2030: "35+ млрд рублей"
+    cagr_to_2028: "25%+"
+    sources:
+      - url: "https://www.tadviser.ru/index.php/Статья:Объем_российского_рынка_платформ_контейнеризации"
+        description: "TAdviser: Объем российского рынка платформ контейнеризации"
+      - url: "https://www.anti-malware.ru/analytics/Market_Analysis/Containerization-platforms-2025"
+        description: "Anti-Malware: Российские платформы контейнеризации 2025"
+
+  # Autoscaling экономия
+  autoscaling_savings:
+    spot_instances: "55-60% экономии на Spot-инстансах vs On-Demand"
+    cluster_autoscaler_benefit: "Автоматическое удаление простаивающих нод"
+    combined_effect: "HPA + Cluster Autoscaler = максимальная экономия"
+    sources:
+      - url: "https://cast.ai/blog/guide-to-kubernetes-autoscaling-for-cloud-cost-optimization/"
+        description: "CAST AI: Guide to Kubernetes Autoscaling"
+      - url: "https://aws.amazon.com/blogs/containers/cost-optimization-for-kubernetes-on-aws/"
+        description: "AWS: Cost optimization for Kubernetes"
+
+  # vCluster (аналог Kube-in-Kube)
+  vcluster_adoption:
+    description: "Virtual clusters — сертифицированный Kubernetes внутри host-кластера"
+    benefits:
+      - "Дешевле отдельных кластеров"
+      - "Лучшая изоляция чем namespaces"
+      - "Запуск за секунды vs 45 минут для EKS"
+    cncf_article: "https://www.cncf.io/blog/2025/09/23/solving-kubernetes-multi-tenancy-challenges-with-vcluster/"
+    official_site: "https://www.vcluster.com/"
+
+  # SDN Sprut
+  sdn_sprut:
+    description: "Собственная SDN VK Cloud, разработана менее чем за год"
+    advantages: "Устранены проблемы Neutron, переработана архитектура"
+    source: "https://habr.com/ru/companies/vk/articles/763760/"
+```
+
+### Официальные источники VK Cloud
+
+```yaml
+official_sources:
+  documentation:
+    - url: "https://cloud.vk.com/"
+      description: "Официальный сайт VK Cloud"
+    - url: "https://mcs.mail.ru/docs/base/k8s"
+      description: "Документация Cloud Containers"
+    - url: "https://mcs.mail.ru/docs/en/base/k8s/concepts/versions/version-changelog"
+      description: "Поддерживаемые версии Kubernetes"
+
+  technical_articles:
+    - url: "https://habr.com/ru/companies/vk/articles/519366/"
+      description: "Как устроен Kubernetes aaS на VK Cloud"
+    - url: "https://habr.com/ru/companies/vk/articles/759026/"
+      description: "Безопасность K8s в Cloud Containers"
+    - url: "https://habr.com/ru/companies/vk/articles/763760/"
+      description: "Как мы в VK Cloud SDN-ы писали (SDN Sprut)"
+
+  news:
+    - url: "https://www.cnews.ru/news/line/2025-12-03_vk_tech_obnovil_kubernetes-platformu"
+      description: "VK Tech обновил Kubernetes-платформу (декабрь 2025)"
+    - url: "https://www.tadviser.ru/index.php/Продукт:VK_Cloud_Containers"
+      description: "TAdviser: VK Cloud Containers"
+
+  github:
+    - url: "https://github.com/vk-cs"
+      description: "VK Cloud на GitHub"
+```
+
+### Отраслевые источники
+
+```yaml
+industry_sources:
+  kubernetes_official:
+    - url: "https://kubernetes.io/"
+      description: "Официальная документация Kubernetes"
+    - url: "https://www.cncf.io/"
+      description: "Cloud Native Computing Foundation"
+
+  security:
+    - url: "https://kubernetes.io/docs/concepts/security/"
+      description: "Kubernetes Security Documentation"
+    - url: "https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html"
+      description: "OWASP Kubernetes Security Cheat Sheet"
+
+  market_research:
+    - url: "https://www.cnews.ru/reviews/rossijskie_platformy_kubernetes_2025"
+      description: "CNews: Российские платформы Kubernetes 2025"
 ```
